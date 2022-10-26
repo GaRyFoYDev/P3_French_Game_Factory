@@ -12,14 +12,15 @@ class Character{
     var name: String
     let life: Int
     var maxLife: Int
+    var weapon: Weapon
     
     
-    
-    init( type: String, name: String, life: Int, maxLife: Int) {
+    init( type: String, name: String, life: Int, maxLife: Int, weapon: Weapon) {
         self.type = type
         self.name = name
         self.life = life
         self.maxLife = maxLife
+        self.weapon = weapon
     }
 }
 

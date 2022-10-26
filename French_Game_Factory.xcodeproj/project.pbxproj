@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0ECD5829094DDA00444780 /* Fist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0ECD5729094DDA00444780 /* Fist.swift */; };
+		4E0ECD5A29094DF500444780 /* Hammer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0ECD5929094DF500444780 /* Hammer.swift */; };
+		4E0ECD5C29094E0100444780 /* Sword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0ECD5B29094E0100444780 /* Sword.swift */; };
+		4E0ECD5E29094E0F00444780 /* Wand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0ECD5D29094E0F00444780 /* Wand.swift */; };
 		4E1004492906A4D800CC1384 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1004482906A4D800CC1384 /* main.swift */; };
 		4E1004532906A9F500CC1384 /* game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1004522906A9F500CC1384 /* game.swift */; };
 		4E1004552906AA5400CC1384 /* teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1004542906AA5400CC1384 /* teams.swift */; };
@@ -31,6 +35,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E0ECD5729094DDA00444780 /* Fist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fist.swift; sourceTree = "<group>"; };
+		4E0ECD5929094DF500444780 /* Hammer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hammer.swift; sourceTree = "<group>"; };
+		4E0ECD5B29094E0100444780 /* Sword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sword.swift; sourceTree = "<group>"; };
+		4E0ECD5D29094E0F00444780 /* Wand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wand.swift; sourceTree = "<group>"; };
 		4E1004452906A4D800CC1384 /* French_Game_Factory */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = French_Game_Factory; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E1004482906A4D800CC1384 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4E1004522906A9F500CC1384 /* game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = game.swift; sourceTree = "<group>"; };
@@ -98,6 +106,10 @@
 			isa = PBXGroup;
 			children = (
 				4E2B517C29093F8600D66BCD /* Weapon.swift */,
+				4E0ECD5729094DDA00444780 /* Fist.swift */,
+				4E0ECD5929094DF500444780 /* Hammer.swift */,
+				4E0ECD5B29094E0100444780 /* Sword.swift */,
+				4E0ECD5D29094E0F00444780 /* Wand.swift */,
 			);
 			path = Weapons;
 			sourceTree = "<group>";
@@ -160,12 +172,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E0ECD5E29094E0F00444780 /* Wand.swift in Sources */,
 				4E1004552906AA5400CC1384 /* teams.swift in Sources */,
 				4E1004492906A4D800CC1384 /* main.swift in Sources */,
 				4E2B517529093EE600D66BCD /* Dwarf.swift in Sources */,
 				4E2B517929093F0100D66BCD /* Colossus.swift in Sources */,
 				4E1004532906A9F500CC1384 /* game.swift in Sources */,
+				4E0ECD5C29094E0100444780 /* Sword.swift in Sources */,
+				4E0ECD5829094DDA00444780 /* Fist.swift in Sources */,
 				4E2B517F29094CB800D66BCD /* Magus.swift in Sources */,
+				4E0ECD5A29094DF500444780 /* Hammer.swift in Sources */,
 				4E255E9F29093B6700AE3236 /* Character.swift in Sources */,
 				4E2B517B29093F0D00D66BCD /* Warrior.swift in Sources */,
 				4E2B517D29093F8600D66BCD /* Weapon.swift in Sources */,
