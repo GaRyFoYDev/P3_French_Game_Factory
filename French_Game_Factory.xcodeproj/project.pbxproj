@@ -12,10 +12,10 @@
 		4E1004552906AA5400CC1384 /* teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1004542906AA5400CC1384 /* teams.swift */; };
 		4E255E9F29093B6700AE3236 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E255E9E29093B6700AE3236 /* Character.swift */; };
 		4E2B517529093EE600D66BCD /* Dwarf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B517429093EE600D66BCD /* Dwarf.swift */; };
-		4E2B517729093EF400D66BCD /* Magus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B517629093EF400D66BCD /* Magus.swift */; };
 		4E2B517929093F0100D66BCD /* Colossus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B517829093F0100D66BCD /* Colossus.swift */; };
 		4E2B517B29093F0D00D66BCD /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B517A29093F0D00D66BCD /* Warrior.swift */; };
 		4E2B517D29093F8600D66BCD /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B517C29093F8600D66BCD /* Weapon.swift */; };
+		4E2B517F29094CB800D66BCD /* Magus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2B517E29094CB800D66BCD /* Magus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,10 +37,10 @@
 		4E1004542906AA5400CC1384 /* teams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teams.swift; sourceTree = "<group>"; };
 		4E255E9E29093B6700AE3236 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		4E2B517429093EE600D66BCD /* Dwarf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dwarf.swift; sourceTree = "<group>"; };
-		4E2B517629093EF400D66BCD /* Magus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magus.swift; sourceTree = "<group>"; };
 		4E2B517829093F0100D66BCD /* Colossus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colossus.swift; sourceTree = "<group>"; };
 		4E2B517A29093F0D00D66BCD /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = "<group>"; };
 		4E2B517C29093F8600D66BCD /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
+		4E2B517E29094CB800D66BCD /* Magus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +87,9 @@
 			children = (
 				4E255E9E29093B6700AE3236 /* Character.swift */,
 				4E2B517429093EE600D66BCD /* Dwarf.swift */,
-				4E2B517629093EF400D66BCD /* Magus.swift */,
 				4E2B517829093F0100D66BCD /* Colossus.swift */,
 				4E2B517A29093F0D00D66BCD /* Warrior.swift */,
+				4E2B517E29094CB800D66BCD /* Magus.swift */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
@@ -165,9 +165,9 @@
 				4E2B517529093EE600D66BCD /* Dwarf.swift in Sources */,
 				4E2B517929093F0100D66BCD /* Colossus.swift in Sources */,
 				4E1004532906A9F500CC1384 /* game.swift in Sources */,
+				4E2B517F29094CB800D66BCD /* Magus.swift in Sources */,
 				4E255E9F29093B6700AE3236 /* Character.swift in Sources */,
 				4E2B517B29093F0D00D66BCD /* Warrior.swift in Sources */,
-				4E2B517729093EF400D66BCD /* Magus.swift in Sources */,
 				4E2B517D29093F8600D66BCD /* Weapon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

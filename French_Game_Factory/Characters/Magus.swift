@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+class Magus: Character {
+    init(name: String){
+        super.init( type: "Magus", name: name, life: 100, maxLife: 100 )
+    }
+}
