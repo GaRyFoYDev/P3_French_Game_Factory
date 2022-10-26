@@ -10,13 +10,16 @@ import Foundation
 class Character{
     var type: String
     var name: String
-    var life: Int
+    let life: Int
+    var maxLife: Int
     
     
-    init( type: String, name: String, life: Int) {
+    
+    init( type: String, name: String, life: Int, maxLife: Int) {
         self.type = type
         self.name = name
         self.life = life
+        self.maxLife = maxLife
     }
 }
 

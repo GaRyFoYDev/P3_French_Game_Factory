@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+class Warrior: Character {
+    init(name: String){
+        super.init( type: "Warrior", name: name, life: 50, maxLife: 50 )
+    }
+}
