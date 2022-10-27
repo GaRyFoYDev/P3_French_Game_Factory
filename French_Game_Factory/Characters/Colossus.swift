@@ -8,8 +8,8 @@
 import Foundation
 
 class Colossus: Character {
-    init(name: String){
-        super.init( type: "Colossus", name: name, life: 75, maxLife: 75, weapon: Fist() )
+    init(){
+        super.init( type: "Colossus", name: "", life: 75, maxLife: 75, weapon: Fist() )
     }
 }
 

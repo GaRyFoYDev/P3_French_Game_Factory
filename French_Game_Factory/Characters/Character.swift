@@ -10,8 +10,8 @@ import Foundation
 class Character{
     var type: String
     var name: String
-    let life: Int
-    var maxLife: Int
+    var life: Int
+    let maxLife: Int
     var weapon: Weapon
     
     
