@@ -7,22 +7,22 @@
 
 import Foundation
 
-var firstTeam = Team(nameofTeam: "firstTeam")
-var secondTeam = Team(nameofTeam: "secondTeam")
+var firstTeam = Team(nameofTeam: "First Team ")
+var secondTeam = Team(nameofTeam: "Seecond Team")
 var charactersNames: [String] = []
-var currentTeam = 0
+
 
 class Game{
     
     func start(){
-        
+       
         welcome()
-        firstTeamCharacterSelection()
-        secondTeamCharacterSelection()
+        teamCharacterSelection(team: firstTeam)
+        //teamCharacterSelection(team: secondTeam)
+       
     }
-    
     // PRESENTATION
-    private func welcome(){
+    func welcome(){
         
         print("")
         print("******************************************  WELCOME  **************************************************")
@@ -32,29 +32,18 @@ class Game{
       
     }
     
-    // FIRST TEAM CHARACTERS SELECTION
-    private func firstTeamCharacterSelection(){
+    //TEAM CHARACTERS SELECTION
+    func teamCharacterSelection(team: Team){
         print("")
-        print("*****************************************  FIRST TEAM   ***********************************************")
+        print("***************************************** \(team.nameOfTeam) ***********************************************")
         print("")
-        print("                          Please select 3 characters for the first team                                ")
+        print("                          Please select 3 characters for the \(team.nameOfTeam)                               ")
         print("")
-        createTeam(team: firstTeam)
-        printTeamMembers(team: firstTeam)
+        createTeam(team: team)
+        printTeamMembers(team: team)
     }
     
-    
-    // SECOND TEAM CHARACTERS SELECTION
-    private func secondTeamCharacterSelection(){
-        print("")
-        print("*****************************************  SECOND TEAM   **********************************************")
-        print("")
-        print("                          Please select 3 characters for the second team                               ")
-        print("")
-        createTeam(team: secondTeam)
-        printTeamMembers(team: secondTeam)
-        
-    }
+ 
     
     
     func createTeam(team: Team){
@@ -62,6 +51,7 @@ class Game{
         
         
         repeat {
+            // Refacto avec un tableau de personnage , transformer string en int , characters[chooseCharacter]
             print("")
             print("************************************  CHARACTERS SELECTION   ******************************************")
             print("")
@@ -96,7 +86,7 @@ class Game{
                     characterCount += 1
                     dispatchCharacters(team: team, characterCount: characterCount, chosenCharacter: magus)
                 
-                    characterCount += 1
+               
                 
                 case "3":
                     print(" You've selected the Colossus")
@@ -107,7 +97,7 @@ class Game{
                     characterCount += 1
                     dispatchCharacters(team: team, characterCount: characterCount, chosenCharacter: colossus)
                 
-                    characterCount += 1
+                   
                 
                 case "4":
                     print(" You've selected the Dwarf")
@@ -118,7 +108,7 @@ class Game{
                     characterCount += 1
                     dispatchCharacters(team: team, characterCount: characterCount, chosenCharacter: dwarf)
                 
-                    characterCount += 1
+                    
                 
                     
                 default:
@@ -132,13 +122,14 @@ class Game{
            
            
             
-        } while (characterCount < 4)
+        } while (characterCount < 3)
         
         
     
     }
 
     // Unique character's name verification
+    // Modifier la fonction pour qu'elle me redemande s'il est déja pris
     func chooseName() -> String{
         var chosenName: String
         var validatedName = ""
@@ -167,11 +158,10 @@ class Game{
     }
     
     
-        func dispatchCharacters(team: Team, characterCount: Int, chosenCharacter: Character ){
+    func dispatchCharacters(team: Team, characterCount: Int, chosenCharacter: Character ){
         
-        if characterCount == 1 { team.member1 = chosenCharacter}
-        else if characterCount == 2 { team.member2 = chosenCharacter}
-        else if characterCount == 3 { team.member3 = chosenCharacter}
+        team.members.append(chosenCharacter)
+        
         print("You've called your \(chosenCharacter.type): \(chosenCharacter.name)")
         
     }
@@ -179,10 +169,14 @@ class Game{
     
     
     func printTeamMembers(team: Team){
-        print("***************\(team.nameOfTeam)***************")
-        print("1. \(team.member1!.name) the \(team.member1!.type)")
-        print("2. \(team.member2!.name) the \(team.member2!.type)")
-        print("3. \(team.member3!.name) the \(team.member3!.type)")
+        
+        print("***************  \(team.nameOfTeam)  ***************")
+        for (index, member) in team.members.enumerated() {
+            print("\(index + 1). \(member.name) the \(member.type)")
+        }
+        
+        
+       
     }
     
 
