@@ -10,6 +10,7 @@ import Foundation
 class Colossus: Character {
     init(){
         super.init( type: "Colossus", name: "", life: 75, maxLife: 75, weapon: Fist() )
-    }
+       
 }
 
+}

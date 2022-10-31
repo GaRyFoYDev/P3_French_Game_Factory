@@ -7,9 +7,10 @@
 
 import Foundation
 
-var firstTeam = Team(nameofTeam: "First Team ")
-var secondTeam = Team(nameofTeam: "Seecond Team")
+var firstTeam = Team(nameofTeam: "FIRST TEAM ")
+var secondTeam = Team(nameofTeam: "SECOND TEAM")
 var charactersNames: [String] = []
+let chooseCharacters = [Warrior(), Magus(), Colossus(), Dwarf()]
 
 
 class Game{
@@ -48,80 +49,45 @@ class Game{
     
     func createTeam(team: Team){
         var characterCount = 0
-        
+      
         
         repeat {
             // Refacto avec un tableau de personnage , transformer string en int , characters[chooseCharacter]
             print("")
-            print("************************************  CHARACTERS SELECTION   ******************************************")
+            print("********************************  \(team.nameOfTeam) CHARACTERS SELECTION   *************************************")
             print("")
-            print(" 1. Warrior - Life: \(Warrior().maxLife) / Attack: \(Sword().damage)   ")
-            print(" 2. Magus - Life: \(Magus().maxLife) / Heal: \(Wand().heal)   ")
-            print(" 3. Colossus - Life: \(Colossus().maxLife) / Attack: \(Fist().damage)   ")
-            print(" 4. Dwarf - Life: \(Dwarf().maxLife) / Attack: \(Hammer().damage)   ")
-            print("")
-            print("Please type a number from 1 to 4 to choose a character")
-            print("")
-            
-            
-            
-            if let chooseCharacter = readLine(){
-                
-                switch chooseCharacter{
-                case "1":
-                    print(" You've selected the Warrior")
-                    print(" Please give him a name")
-                    let characterName = chooseName()
-                    let warrior = Warrior()
-                    warrior.name = characterName
-                    characterCount += 1
-                    dispatchCharacters(team: team, characterCount: characterCount, chosenCharacter: warrior)
-                
-                case "2":
-                    print(" You've selected the Magus")
-                    print(" Please give him a name")
-                    let characterName = chooseName()
-                    let magus = Magus()
-                    magus.name = characterName
-                    characterCount += 1
-                    dispatchCharacters(team: team, characterCount: characterCount, chosenCharacter: magus)
-                
-               
-                
-                case "3":
-                    print(" You've selected the Colossus")
-                    print(" Please give him a name")
-                    let characterName = chooseName()
-                    let colossus = Colossus()
-                    colossus.name = characterName
-                    characterCount += 1
-                    dispatchCharacters(team: team, characterCount: characterCount, chosenCharacter: colossus)
-                
-                   
-                
-                case "4":
-                    print(" You've selected the Dwarf")
-                    print(" Please give him a name")
-                    let characterName = chooseName()
-                    let dwarf = Warrior()
-                    dwarf.name = characterName
-                    characterCount += 1
-                    dispatchCharacters(team: team, characterCount: characterCount, chosenCharacter: dwarf)
-                
-                    
-                
-                    
-                default:
-                    print("We don't understand your choice, please type a number from 1 to 4 to choose a character !")
-                    
-                }
-                
-                
+            for (index, character) in chooseCharacters.enumerated(){
+                print("\(index + 1). \(character.type) - Life: \(character.maxLife) / Attack: \(character.weapon.damage)")
                 
             }
-           
-           
+            print("")
+            print("Please type in a number from 1 to 4 to select your \(characterCount + 1)/3 character.")
+            print("")
             
+            
+    
+            if let chooseCharacter = readLine(){
+                if let index = Int(chooseCharacter){
+                    if index > 0 && index <= 4{
+                        let characterSelected = chooseCharacters[index - 1]
+                        print("**********************************************")
+                        print(" You've selected the \(characterSelected.type)")
+                        print("")
+                        print("**********************************************")
+                        print(" Please give him a name")
+                        print("")
+                        characterSelected.name = chooseName()
+                        characterCount += 1
+                        dispatchCharacters(team: team, characterCount: characterCount, chosenCharacter: characterSelected)
+                    }else {
+                        print("Please only type in a number from 1 to 4 to choose a character !")
+                    }
+                }else{
+                        print("We don't understand your choice, please type in a number from 1 to 4 to choose a character !")
+                    }
+                    
+                }
+ 
         } while (characterCount < 3)
         
         
@@ -161,7 +127,8 @@ class Game{
     func dispatchCharacters(team: Team, characterCount: Int, chosenCharacter: Character ){
         
         team.members.append(chosenCharacter)
-        
+        print("")
+        print("**********************************************")
         print("You've called your \(chosenCharacter.type): \(chosenCharacter.name)")
         
     }
@@ -169,7 +136,7 @@ class Game{
     
     
     func printTeamMembers(team: Team){
-        
+        print("")
         print("***************  \(team.nameOfTeam)  ***************")
         for (index, member) in team.members.enumerated() {
             print("\(index + 1). \(member.name) the \(member.type)")

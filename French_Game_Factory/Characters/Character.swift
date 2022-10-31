@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 class Character{
     var type: String
     var name: String
@@ -22,6 +23,11 @@ class Character{
         self.maxLife = maxLife
         self.weapon = weapon
     }
+    
+   
+    
 }
+
+
 
 
