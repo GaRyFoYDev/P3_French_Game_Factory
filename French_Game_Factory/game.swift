@@ -19,7 +19,7 @@ class Game{
        
         welcome()
         teamCharacterSelection(team: firstTeam)
-        //teamCharacterSelection(team: secondTeam)
+        teamCharacterSelection(team: secondTeam)
        
     }
     // PRESENTATION
@@ -34,7 +34,7 @@ class Game{
     }
     
     //TEAM CHARACTERS SELECTION
-    func teamCharacterSelection(team: Team){
+    private func teamCharacterSelection(team: Team){
         print("")
         print("***************************************** \(team.nameOfTeam) ***********************************************")
         print("")
@@ -47,7 +47,7 @@ class Game{
  
     
     
-    func createTeam(team: Team){
+    private func createTeam(team: Team){
         var characterCount = 0
       
         
@@ -68,6 +68,8 @@ class Game{
     
             if let chooseCharacter = readLine(){
                 if let index = Int(chooseCharacter){
+                    
+                    // Input range
                     if index > 0 && index <= 4{
                         let characterSelected = chooseCharacters[index - 1]
                         print("**********************************************")
@@ -77,8 +79,16 @@ class Game{
                         print(" Please give him a name")
                         print("")
                         characterSelected.name = chooseName()
-                        characterCount += 1
-                        dispatchCharacters(team: team, characterCount: characterCount, chosenCharacter: characterSelected)
+                        
+                        // Name unicity
+                        if characterSelected.name == "nameAlreadyTook"{
+                            print("This name has already been picked, please choose another one !")
+                        }else{
+                            characterCount += 1
+                            dispatchCharacters(team: team, characterCount: characterCount, chosenCharacter: characterSelected)
+                        }
+                        
+                        
                     }else {
                         print("Please only type in a number from 1 to 4 to choose a character !")
                     }
@@ -95,36 +105,25 @@ class Game{
     }
 
     // Unique character's name verification
-    // Modifier la fonction pour qu'elle me redemande s'il est déja pris
-    func chooseName() -> String{
-        var chosenName: String
-        var validatedName = ""
-        chosenName = readLine()!
-       
-        
-        if (charactersNames.count == 0){
-             validatedName = chosenName
-            
-        } else {
-            
-            for name in charactersNames{
-                if name == chosenName {
-                    print("This name has already been picked")
-                } else{
-                    
-                    validatedName = chosenName
-                }
+    private func chooseName() -> String{
+        var validateName: String = ""
+        if let chosenName = readLine(){
+            if charactersNames.contains(chosenName){
+                validateName = "nameAlreadyTook"
+            }else{
+                charactersNames.append(chosenName)
+                validateName = charactersNames[charactersNames.count-1]
             }
             
             
         }
         
-        charactersNames.append(validatedName)
-        return validatedName
+        return validateName
+        
     }
     
     
-    func dispatchCharacters(team: Team, characterCount: Int, chosenCharacter: Character ){
+    private func dispatchCharacters(team: Team, characterCount: Int, chosenCharacter: Character ){
         
         team.members.append(chosenCharacter)
         print("")
@@ -135,7 +134,7 @@ class Game{
     
     
     
-    func printTeamMembers(team: Team){
+    private func printTeamMembers(team: Team){
         print("")
         print("***************  \(team.nameOfTeam)  ***************")
         for (index, member) in team.members.enumerated() {
