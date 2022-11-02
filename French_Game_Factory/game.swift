@@ -11,16 +11,16 @@ var firstTeam = Team(nameofTeam: "FIRST TEAM ")
 var secondTeam = Team(nameofTeam: "SECOND TEAM")
 var charactersNames: [String] = []
 let chooseCharacters = [Warrior(), Magus(), Colossus(), Dwarf()]
-
+var selectedCharacters: [Character] = []
 
 class Game{
     
     func start(){
-       
+        
         welcome()
         teamCharacterSelection(team: firstTeam)
         teamCharacterSelection(team: secondTeam)
-       
+        
     }
     // PRESENTATION
     func welcome(){
@@ -30,11 +30,11 @@ class Game{
         print("")
         print("The rules is simple:  2 teams of 3 characters are figthing until one the teams loose all its characters")
         print("")
-      
+        
     }
     
     //TEAM CHARACTERS SELECTION
-    private func teamCharacterSelection(team: Team){
+    func teamCharacterSelection(team: Team){
         print("")
         print("***************************************** \(team.nameOfTeam) ***********************************************")
         print("")
@@ -44,48 +44,59 @@ class Game{
         printTeamMembers(team: team)
     }
     
- 
     
     
-    private func createTeam(team: Team){
+    
+    func createTeam(team: Team){
         var characterCount = 0
-      
+        
         
         repeat {
             // Refacto avec un tableau de personnage , transformer string en int , characters[chooseCharacter]
             print("")
-            print("********************************  \(team.nameOfTeam) CHARACTERS SELECTION   *************************************")
+            print("********************************  \(team.nameOfTeam) CHARACTERS SELECTION \(characterCount + 1)/3  *************************************")
             print("")
             for (index, character) in chooseCharacters.enumerated(){
                 print("\(index + 1). \(character.type) - Life: \(character.maxLife) / Attack: \(character.weapon.damage)")
                 
             }
             print("")
-            print("Please type in a number from 1 to 4 to select your \(characterCount + 1)/3 character.")
+            print("Please type in a number from 1 to 4 to select your character.")
             print("")
             
             
-    
+            
             if let chooseCharacter = readLine(){
                 if let index = Int(chooseCharacter){
                     
                     // Input range
                     if index > 0 && index <= 4{
-                        let characterSelected = chooseCharacters[index - 1]
+                        
+                        switch chooseCharacters[index - 1].type{
+                        case "Warrior":  selectedCharacters.append(Warrior())
+                        case "Magus":  selectedCharacters.append(Magus())
+                        case "Colossus":  selectedCharacters.append(Colossus())
+                        case "Dwarf":  selectedCharacters.append(Dwarf())
+                        default: print("Something went wrong !")
+                        }
+                        
+                        let lastCharacterSelected = selectedCharacters[selectedCharacters.count - 1]
+                        
                         print("**********************************************")
-                        print(" You've selected the \(characterSelected.type)")
+                        print(" You've selected the \(lastCharacterSelected.type)")
                         print("")
                         print("**********************************************")
                         print(" Please give him a name")
                         print("")
-                        characterSelected.name = chooseName()
+                        lastCharacterSelected.name = chooseName()
                         
                         // Name unicity
-                        if characterSelected.name == "nameAlreadyTook"{
+                        if lastCharacterSelected.name == "nameAlreadyTook"{
                             print("This name has already been picked, please choose another one !")
                         }else{
                             characterCount += 1
-                            dispatchCharacters(team: team, characterCount: characterCount, chosenCharacter: characterSelected)
+                            dispatchCharacters(team: team, characterCount: characterCount, chosenCharacter: lastCharacterSelected)
+                            
                         }
                         
                         
@@ -93,19 +104,26 @@ class Game{
                         print("Please only type in a number from 1 to 4 to choose a character !")
                     }
                 }else{
-                        print("We don't understand your choice, please type in a number from 1 to 4 to choose a character !")
-                    }
-                    
+                    print("We don't understand your choice, please type in a number from 1 to 4 to choose a character !")
                 }
- 
+                
+            }
+            
         } while (characterCount < 3)
         
         
-    
+        
+      
+        
+        
+     
+        
+        
     }
-
+    
+    
     // Unique character's name verification
-    private func chooseName() -> String{
+    func chooseName() -> String{
         var validateName: String = ""
         if let chosenName = readLine(){
             if charactersNames.contains(chosenName){
@@ -123,7 +141,7 @@ class Game{
     }
     
     
-    private func dispatchCharacters(team: Team, characterCount: Int, chosenCharacter: Character ){
+    func dispatchCharacters(team: Team, characterCount: Int, chosenCharacter: Character ){
         
         team.members.append(chosenCharacter)
         print("")
@@ -133,22 +151,13 @@ class Game{
     }
     
     
-    
-    private func printTeamMembers(team: Team){
+    func printTeamMembers(team: Team){
         print("")
         print("***************  \(team.nameOfTeam)  ***************")
         for (index, member) in team.members.enumerated() {
             print("\(index + 1). \(member.name) the \(member.type)")
         }
         
-        
-       
     }
     
-
-    
-   
-    
-    
 }
-    
