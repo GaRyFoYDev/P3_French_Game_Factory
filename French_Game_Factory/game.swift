@@ -12,6 +12,7 @@ var secondTeam = Team(nameofTeam: "SECOND TEAM")
 var charactersNames: [String] = []
 let chooseCharacters = [Warrior(), Magus(), Colossus(), Dwarf()]
 var selectedCharacters: [Character] = []
+var playersFighting: [Character] = []
 
 class Game{
     
@@ -20,6 +21,7 @@ class Game{
         welcome()
         teamCharacterSelection(team: firstTeam)
         teamCharacterSelection(team: secondTeam)
+        fight(team1: firstTeam, team2: secondTeam)
         
     }
     // PRESENTATION
@@ -113,10 +115,10 @@ class Game{
         
         
         
-      
         
         
-     
+        
+        
         
         
     }
@@ -160,4 +162,61 @@ class Game{
         
     }
     
+    
+    func fight(team1: Team, team2: Team){
+        print("")
+        print("****************** FIGHT *******************")
+        print("You've successfully selected two teams: ")
+        print("\(team1.nameOfTeam) and \(team2.nameOfTeam)")
+        print("")
+        print("We are now ready to fight")
+        print("")
+        print("****************** TEAMS RECAP *******************")
+        printTeamMembers(team: team1)
+        printTeamMembers(team: team2)
+        
+        // Mettre une boucle en place pour ajouter des perso au tabelau characters fighting
+        // les deux perso se combattent le premier avec zero pv est supprimer du tableau fighting et team
+        // on demande à l'équipe ayant perdu un perso d'en selectionner un autre
+        // la première équipe avec zero perso dans son tableau perd
+        // on imprime le vainqueur
+        // le jeu est terminé
+        selectPlayerToFight(team1: team1, team2: team2)
+        
+        
+        
+    }
+    
+    
+    func selectPlayerToFight(team1: Team, team2: Team){
+        print("")
+        print("***** PLAYER SELECTION: \(team1.nameOfTeam) *****")
+        print("Please type in the name of one of the character in \(team1.nameOfTeam)")
+        
+        if let input1 = readLine(){
+            for player1 in team1.members{
+                if input1 == player1.name{
+                    playersFighting.append(player1)
+                }
+            }
+        }
+        
+        print("")
+        print("***** PLAYER SELECTION: \(team2.nameOfTeam) *****")
+        print("Please type in the name of one of the character in \(team2.nameOfTeam)")
+        if let input2 = readLine(){
+            for player2 in team2.members{
+                if input2 == player2.name{
+                    playersFighting.append(player2)
+                }
+            }
+        }
+       
+        let hero = playersFighting[0]
+        let vilain = playersFighting[1]
+        print("")
+        print("**********************************************************************")
+        print("You've selected \(hero.name) the \(hero.type) (\(hero.maxLife))PV to fight against \(vilain.name) the \(vilain.type) (\(hero.maxLife))PV")
+    }
 }
+
