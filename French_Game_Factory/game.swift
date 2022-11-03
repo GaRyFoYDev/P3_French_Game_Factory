@@ -13,6 +13,7 @@ var charactersNames: [String] = []
 let chooseCharacters = [Warrior(), Magus(), Colossus(), Dwarf()]
 var selectedCharacters: [Character] = []
 var playersFighting: [Character] = []
+var rounds = 1
 
 class Game{
     
@@ -162,61 +163,173 @@ class Game{
         
     }
     
-    
+   // Implémenter le fait que si la vie d'un perso est à zéro il ne peut pas combattre
     func fight(team1: Team, team2: Team){
+        
         print("")
         print("****************** FIGHT *******************")
         print("You've successfully selected two teams: ")
-        print("\(team1.nameOfTeam) and \(team2.nameOfTeam)")
-        print("")
-        print("We are now ready to fight")
+        print("It is now time to fight")
         print("")
         print("****************** TEAMS RECAP *******************")
         printTeamMembers(team: team1)
         printTeamMembers(team: team2)
         
-        // Mettre une boucle en place pour ajouter des perso au tabelau characters fighting
-        // les deux perso se combattent le premier avec zero pv est supprimer du tableau fighting et team
-        // on demande à l'équipe ayant perdu un perso d'en selectionner un autre
-        // la première équipe avec zero perso dans son tableau perd
-        // on imprime le vainqueur
-        // le jeu est terminé
-        selectPlayerToFight(team1: team1, team2: team2)
         
+        repeat {
+           
+            selectPlayerToFight(team1: team1, team2: team2)
+            attack(playersFighting: playersFighting, team1: team1, team2: team2)
+            teamRecap(team1: team1, team2: team2)
+            rounds += 1
+
+            
+        }while team1.members.count > 0  || secondTeam.members.count > 0
+        
+        printWinners(team1: team1, team2: team2)
         
         
     }
     
-    
+   
     func selectPlayerToFight(team1: Team, team2: Team){
-        print("")
-        print("***** PLAYER SELECTION: \(team1.nameOfTeam) *****")
-        print("Please type in the name of one of the character in \(team1.nameOfTeam)")
         
-        if let input1 = readLine(){
-            for player1 in team1.members{
-                if input1 == player1.name{
-                    playersFighting.append(player1)
+        let teams = [team1, team2]
+        
+        
+        for team in teams{
+            
+            print("")
+            print("***** PLAYER SELECTION: \(team.nameOfTeam) *****")
+            print("Please select a number from 1 to \(team.members.count) in \(team.nameOfTeam) to select the character you use for the fight")
+            
+            if let input = readLine(){
+                if let index = Int(input){
+                    if index > 0 && index <= team.members.count{
+                        playersFighting.append(team.members[index - 1])
+                    }
+                }else {
+                    print("We don't understand your choice, please type in a number from 1 to \(team.members.count) to choose a character !")
                 }
+                
+                
             }
+            
         }
         
-        print("")
-        print("***** PLAYER SELECTION: \(team2.nameOfTeam) *****")
-        print("Please type in the name of one of the character in \(team2.nameOfTeam)")
-        if let input2 = readLine(){
-            for player2 in team2.members{
-                if input2 == player2.name{
-                    playersFighting.append(player2)
-                }
-            }
-        }
-       
         let hero = playersFighting[0]
-        let vilain = playersFighting[1]
+        let villain = playersFighting[1]
         print("")
-        print("**********************************************************************")
-        print("You've selected \(hero.name) the \(hero.type) (\(hero.maxLife))PV to fight against \(vilain.name) the \(vilain.type) (\(hero.maxLife))PV")
+        print("********************* ROUND: \(rounds) *****************************")
+        print("You've selected \(hero.name) the \(hero.type) \(hero.maxLife)PV to fight against \(villain.name) the \(villain.type) \(hero.maxLife)PV")
     }
+    
+    
+    
+    
+    func attack(playersFighting: [Character], team1: Team, team2: Team){
+        
+        var hero = playersFighting[0]
+        var villain = playersFighting[1]
+        
+       
+        if rounds % 2 == 0 {
+            hero = playersFighting[1]
+            villain = playersFighting[0]
+        }
+        
+        
+        // hero attacks villain
+        print("")
+        print("\(hero.name) is attacking ...")
+        sleep(2)
+        
+        if hero.type != "Magus"
+        {
+            villain.life -= hero.weapon.damage
+            
+            if villain.life < 0{
+                villain.life = 0
+            }
+            
+            // Round recap
+            print("")
+            print("************************* ROUND RECAP *************************")
+            print("\(villain.name) the \(villain.type) has lost \(hero.weapon.damage)PV")
+           
+            
+        }else{
+            if rounds % 2 == 0{
+                heal(team: team1)
+            }else{
+                heal(team: team2)
+            }
+        }
+        
+        if villain.life == 0{
+            print("\(villain.name) the \(villain.type) is dead")
+        }
+        
+        
+        
+    }
+    
+    func heal(team: Team){
+        for character in team.members{
+            if character.type == "Magus"{
+                if let playerToHeal = readLine(){
+                    print("Please type in a number from 1 to \(team.members.count) to select the player you want to heal")
+                    if let index = Int(playerToHeal){
+                        if index > 0 && index <= team.members.count{
+                            team.members[index - 1].life += character.weapon.heal
+                            
+                            // Life does not exeed maxLife
+                            if  team.members[index - 1].life >  team.members[index - 1].maxLife{
+                                team.members[index - 1].life =  team.members[index - 1].maxLife
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    // Modifier la fonction pour ne plus supprimer de perso du tableau
+    /*func verifyLife(team: Team){
+        
+        for (index, member) in team.members.enumerated(){
+            if member.life == 0{
+                team.members.remove(at: index)
+            }
+        }
+    } */
+    
+    func printWinners(team1 :Team, team2: Team) {
+        if team1.members.count == 0{
+            print("The \(team1.nameOfTeam) has won the fight")
+        }else if team2.members.count == 0{
+            print("The \(team2.nameOfTeam) has won the fight")
+        }
+    }
+    
+    
+    func teamRecap(team1: Team, team2: Team){
+        let teams = [team1, team2]
+        
+        for team in teams{
+            print("")
+            print("**************  \(team.nameOfTeam) ****************")
+            
+            for member in team.members{
+                print("\(member.name) the \(member.type) - \(member.life)PV")
+            }
+        }
+    }
+    
 }
+
+
+
 
