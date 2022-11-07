@@ -62,7 +62,12 @@ class Game {
             print("********************************  \(team.nameOfTeam) CHARACTERS SELECTION \(characterCount + 1)/3  *************************************")
             print("")
             for (index, character) in chooseCharacters.enumerated(){
-                print("\(index + 1). \(character.type) - Life: \(character.maxLife) / Attack: \(character.weapon.damage)")
+                if character.type == "Magus"{
+                    print("\(index + 1). \(character.type) - Life: \(character.maxLife) / Heal: \(character.weapon.heal)")
+                }else{
+                    print("\(index + 1). \(character.type) - Life: \(character.maxLife) / Attack: \(character.weapon.damage)")
+                }
+            
                 
             }
             print("")
@@ -294,7 +299,7 @@ class Game {
             // Attack recap
             print("")
             print("************************* ROUND RECAP - \(currentTeam.nameOfTeam.uppercased()) *************************")
-            if villain.life < 0{
+            if villain.life > 0{
                 print("\(villain.name) the \(villain.type) has lost \(hero.weapon.damage)PV")
             }else{
                 print("\(villain.name) the \(villain.type) is dead")

@@ -9,7 +9,7 @@ import Foundation
 
 class Warrior: Character {
     init() {
-        super.init( type: "Warrior", name: "", life: 50, maxLife: 50, weapon: Sword() )
+        super.init( type: "Warrior", name: "", life: 40, maxLife: 40, weapon: Sword() )
        
     }
     

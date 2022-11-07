@@ -9,6 +9,6 @@ import Foundation
 
 class Fist: Weapon {
     init() {
-        super.init(name: "Fist", damage: 25, heal: 0)
+        super.init(name: "Fist", damage: 15, heal: 0)
     }
 }
