@@ -8,7 +8,7 @@
 import Foundation
 
 
-class Character{
+class Character {
     var type: String
     var name: String
     var life: Int

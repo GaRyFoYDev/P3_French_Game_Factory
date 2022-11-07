@@ -7,12 +7,12 @@
 
 import Foundation
 
-class Team{
+class Team {
     var nameOfTeam: String
     var members: [Character] = []
    
     
-    init(nameofTeam: String){
+    init(nameofTeam: String) {
         self.nameOfTeam = nameofTeam
     }
     

@@ -7,8 +7,8 @@
 
 import Foundation
 
-class Wand: Weapon{
-    init(){
+class Wand: Weapon {
+    init() {
         super.init(name: "Wand", damage: 0, heal: 50)
     }
 }

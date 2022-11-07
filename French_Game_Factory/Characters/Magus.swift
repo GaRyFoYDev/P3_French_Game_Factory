@@ -8,7 +8,7 @@
 import Foundation
 
 class Magus: Character {
-    init(){
+    init() {
         super.init( type: "Magus", name: "", life: 100, maxLife: 100, weapon: Wand() )
        
     }
