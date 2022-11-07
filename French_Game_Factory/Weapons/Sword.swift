@@ -9,6 +9,6 @@ import Foundation
 
 class Sword: Weapon {
     init() {
-        super.init(name: "Sword", damage: 20, heal: 0)
+        super.init(name: "Sword", damage: 30, heal: 0)
     }
 }
