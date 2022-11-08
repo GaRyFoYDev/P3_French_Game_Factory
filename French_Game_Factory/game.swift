@@ -11,10 +11,8 @@ var firstTeam = Team(nameofTeam: "FIRST TEAM ")
 var secondTeam = Team(nameofTeam: "SECOND TEAM")
 var charactersNames: [String] = []
 let chooseCharacters = [Warrior(), Magus(), Colossus(), Dwarf()]
-var selectedCharacters: [Character] = []
-var playersFighting: [Character] = []
 var rounds = 1
-var fightIsOver = false
+
 
 
 class Game {
@@ -54,7 +52,7 @@ class Game {
     
     private func createTeam(team: Team) {
         var characterCount = 0
-        
+        var selectedCharacters: [Character] = []
         
         repeat {
             
@@ -121,6 +119,8 @@ class Game {
             }
             
         } while (characterCount < 3)
+        
+        
     }
     
     
@@ -163,6 +163,8 @@ class Game {
     
     private func fight(team1: Team, team2: Team) {
         
+        var fightIsOver = false
+        
         print("")
         print("****************** FIGHT *******************")
         print("You've successfully selected two teams: ")
@@ -176,23 +178,25 @@ class Game {
         repeat {
             
             
-            selectPlayerToFight(team1: team1, team2: team2)
+            var playersFighting = selectPlayerToFight(team1: team1, team2: team2)
             attack(playersFighting: playersFighting, team1: team1, team2: team2)
             teamRecap(team1: team1, team2: team2)
             rounds += 1
+            fightIsOver = isFightOver(team1: team1, team2: team2)
             playersFighting = []
-            isFightOver(team1: team1, team2: team2)
+           
             
-        } while fightIsOver != true
+            
+            
+        } while fightIsOver == false
         
     }
     
     
-    private func selectPlayerToFight(team1: Team, team2: Team) {
+    private func selectPlayerToFight(team1: Team, team2: Team) -> [Character] {
         
         let teams = [team1, team2]
-        
-        
+        var playersFighting: [Character] = []
         
         for team in teams {
             
@@ -249,6 +253,7 @@ class Game {
             
         }
         
+        return playersFighting
     }
     
     
@@ -390,9 +395,10 @@ class Game {
     
     
     
-    private func isFightOver(team1: Team, team2: Team){
+    private func isFightOver(team1: Team, team2: Team) -> Bool{
         
         let teams = [team1, team2]
+      
         
         for team in teams{
             var characterDead = 0
@@ -404,7 +410,7 @@ class Game {
                     
                 }
                 if characterDead == 3 {
-                    fightIsOver = true
+                   
                     let looser = team.nameOfTeam
                     print("")
                     print("*************** GAME OVER ***************")
@@ -413,13 +419,16 @@ class Game {
                     }else{
                         print("\(team1.nameOfTeam) has won the fight")
                     }
-                    
+                    return true
                 }
             }
             
             
         }
         
+        
+            return false
+       
         
     }
     
